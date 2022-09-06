@@ -1,0 +1,20 @@
+<div class="top-bar">
+    <h1>💰 Emotive Budget Calculator 🤑</h1>
+</div>
+
+<section class="total-budget-section">
+    <div></div>
+    <h2 *ngIf="totalBudget == 0" [ngClass]="{'red' : totalBudget < 0, 'green': totalBudget > 0 }">{{ totalBudget }} 😐</h2>
+    <h2 *ngIf="totalBudget < 0" [ngClass]="{'red' : totalBudget < 0, 'green': totalBudget > 0 }">{{ totalBudget }} 😱</h2>
+    <h2 *ngIf="totalBudget > 0" [ngClass]="{'red' : totalBudget < 0, 'green': totalBudget > 0 }">{{ totalBudget }} 🤑</h2>
+</section>
+
+<section class="add-item-section">
+    <div class="add-item-container">
+        <app-add-item-form style="padding: 20px" (formSubmit)="addItem($event)"></app-add-item-form>
+    </div>
+</section>
+
+<hr style="margin: 0">
+
+<app-budget-item-list (update)="updateItem($event)" (delete)="deleteItem($event)" [budgetItems]="budgetItems"></app-budget-item-list>
